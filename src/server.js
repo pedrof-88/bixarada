@@ -6,6 +6,7 @@ const path = require('path');
 const routes = require('./routes');
 
 
+
 const app = express();
 
 global.IP_ADDRESS = 'http://localhost:3333';
@@ -17,6 +18,7 @@ mongoose.connect(Bixarada,
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
+  useCreateIndex: true
 });
 
 app.use(cors());
