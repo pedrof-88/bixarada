@@ -3,6 +3,9 @@ const bcrypt = require('bcryptjs');
 
 const ApoiadorSchema = new mongoose.Schema({
   userImage:String,
+
+  status:Number,
+
   name: {
     type: String,
     require:true},

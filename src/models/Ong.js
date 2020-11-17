@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const OngSchema = new mongoose.Schema({
+  
+  status:Number,
+
   name:{
     type: String, 
     require:true},

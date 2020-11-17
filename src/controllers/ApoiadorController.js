@@ -5,6 +5,7 @@ module.exports = {
   async store(req, res) {
     const { filename } = req.file;
     const {
+      status,
       name, 
       email, 
       birthdate,      
@@ -19,6 +20,7 @@ module.exports = {
 
     const apoiador = await Apoiador.create({ 
       userImage: filename,
+      status,
       name, 
       email, 
       birthdate, 
@@ -38,7 +40,7 @@ module.exports = {
     const {userId} = req.params;
     const { name, email, birthdate, adress} = req.body;
     const apoiador = await Apoiador.findByIdAndUpdate(userId, {
-      userImage:filename, 
+      userImage:filename,       
       name, 
       email, 
       birthdate, 

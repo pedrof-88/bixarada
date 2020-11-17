@@ -13,7 +13,7 @@ module.exports = {
       user: req.params.userId
     });
     if (value > 0) {
-      const incident = await Casos.findOneAndUpdate({incidentId: res.incidentId}, {        
+      await Casos.findOneAndUpdate({incidentId: res.incidentId}, {        
         $inc: {total: value }
         
     }, {new : true});

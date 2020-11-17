@@ -5,9 +5,10 @@ module.exports = {
 
   async store(req,res) {
     const { filename } = req.file;
-    const { title, description, goal, total, start, end} = req.body;
+    const { status, title, description, goal, total, start, end} = req.body;
     const incident = await Casos.create({
       incidentImage: filename,
+      status,
       title, 
       description,
       goal,
