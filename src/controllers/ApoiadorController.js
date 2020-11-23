@@ -48,6 +48,13 @@ module.exports = {
     }, {new : true});
     return res.json(apoiador)
   },
+
+  async show(req, res){
+    const {userId} = req.params;
+    const apoiador = await Apoiador.findById(userId);
+    return res.json(apoiador);
+  },
+
   async destroy(req, res){
     const {userId} = req.params;
     await Apoiador.findOneAndDelete( userId);

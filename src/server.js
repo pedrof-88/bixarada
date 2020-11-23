@@ -9,7 +9,7 @@ const routes = require('./routes');
 
 const app = express();
 
-global.IP_ADDRESS = 'http://localhost:3333';
+global.IP_ADDRESS = 'http://192.168.10.6:3333';
 
 const Bixarada = 'mongodb+srv://cfpets:cfpetspi2020@cluster0.ybjoz.mongodb.net/dbpet?retryWrites=true&w=majority';
 

@@ -3,7 +3,9 @@ const bcrypt = require('bcryptjs');
 
 const OngSchema = new mongoose.Schema({
   
-  status:Number,
+  status:{
+    type:Number,
+    require:true},
 
   name:{
     type: String, 

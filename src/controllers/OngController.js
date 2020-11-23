@@ -8,7 +8,8 @@ module.exports = {
       whatsapp, 
       cnpj, 
       adress,       
-      password
+      password, 
+      status
     } = req.body;
 
     if (await Ong.findOne({ email })) {
@@ -21,15 +22,18 @@ module.exports = {
       whatsapp, 
       cnpj, 
       adress,       
-      password       
+      password,
+      status       
     });
     return res.json(ong);
   },
 
-    async show(req, res) {
-      const ong = await Ong.find();      
-      return res.json(ong);
-    },
+  async show(req, res){
+    const {ongId} = req.params;
+    const ong = await Ong.findById(ongId);
+    return res.json(ong);
+  },
+    
 
     /*async update(req, res) {
     const {ongId} = req.params;

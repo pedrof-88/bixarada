@@ -15,7 +15,7 @@ module.exports = {
       total,
       start,
       end,      
-      ong: req.params.ongId,
+      ong: req.headers.authorization,
     });
     return res.json(incident);
   },
@@ -27,7 +27,7 @@ module.exports = {
   },
 
   async list(req, res) {
-    const incident = await Casos.find({ ong: req.params.ongId});   
+    const incident = await Casos.find({ ong: req.headers.authorization});   
     return res.json(incident);
   },  
 
