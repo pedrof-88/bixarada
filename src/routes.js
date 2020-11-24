@@ -2,9 +2,9 @@ const express = require('express');
 const multer = require('multer');
 const uploadConfig = require('./config/multer');
 
-const ApoiadorController = require('./controllers/ApoiadorController');
-const OngController = require('./controllers/OngController');
-const AutenticacaoController = require('./controllers/AutenticacaoController');
+const UserController = require('./controllers/UserController');
+const NgoController = require('./controllers/NgoController');
+const AuthController = require('./controllers/AuthController');
 const CasoController = require('./controllers/CasoController');
 const DonateController = require('./controllers/DonateController');
 
@@ -12,19 +12,19 @@ const routes = express.Router();
 const upload = multer(uploadConfig);
 
 //Sessão
-routes.post ('/auth', AutenticacaoController.store);
+routes.post ('/auth', AuthController.store);
 
 //Apoiadores
-routes.post ('/apoiadores',upload.single('userImage'), ApoiadorController.store);
-routes.get ('/apoiador/:userId', ApoiadorController.show);
-routes.put ('/apoiadores/:userId', upload.single('userImage'), ApoiadorController.update);
-routes.delete ('/apoiadores/:userId', ApoiadorController.destroy);
+routes.post ('/users',upload.single('userImage'), UserController.store);
+routes.get ('/user/:userId', UserController.show);
+routes.put ('/users/:userId', upload.single('userImage'), UserController.update);
+routes.delete ('/users/:userId', UserController.destroy);
 
-//Ongs
-routes.post ('/ongs', OngController.store);
-routes.get('/ong/:ongId', OngController.show);
-routes.put ('/ongs/:ongId', OngController.update);
-routes.delete ('/ongs/:ongId', OngController.destroy);
+//Ngos
+routes.post ('/ngos', NgoController.store);
+routes.get('/ngo/:ngoId', NgoController.show);
+routes.put ('/ngos/:ngoId', NgoController.update);
+routes.delete ('/ngos/:ngoId', NgoController.destroy);
 
 //Casos
 routes.post ('/casos', upload.single('incidentImage'), CasoController.store);

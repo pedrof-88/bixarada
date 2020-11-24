@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const ApoiadorSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   userImage:String,
 
   status:Number,
@@ -33,15 +33,15 @@ const ApoiadorSchema = new mongoose.Schema({
     virtuals:true,
   },
 });
-ApoiadorSchema.pre('save', async function (next) {
+UserSchema.pre('save', async function (next) {
   const hash = await bcrypt.hash(this.password, 10);
   this.password = hash;  
   next();
   
 });
 
-ApoiadorSchema.virtual('userImage_url').get(function () {
+UserSchema.virtual('userImage_url').get(function () {
   return `${global.IP_ADDRESS}/images/${this.userImage}`;
 })
 
-module.exports = mongoose.model('Apoiador', ApoiadorSchema)
+module.exports = mongoose.model('User', UserSchema)

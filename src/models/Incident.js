@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CasoSchema = new mongoose.Schema({
+const IncidentSchema = new mongoose.Schema({
 
   incidentImage:String,
   title:{
@@ -32,9 +32,9 @@ const CasoSchema = new mongoose.Schema({
     type:Date, 
     default:Date.now,
   },
-  ong: {
+  ngo: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Ong',
+    ref: 'Ngo',
   },
 
 },{
@@ -43,8 +43,8 @@ const CasoSchema = new mongoose.Schema({
   },
 });
 
-CasoSchema.virtual('incidentImage_url').get(function (){
+IncidentSchema.virtual('incidentImage_url').get(function (){
   return `${global.IP_ADDRESS}/images/${this.incidentImage}`
 })
 
-module.exports = mongoose.model('Casos', CasoSchema )
+module.exports = mongoose.model('Incidents', IncidentSchema )

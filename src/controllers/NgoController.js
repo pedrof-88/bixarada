@@ -1,4 +1,4 @@
-const Ong = require("../models/Ong");
+const Ngo = require("../models/Ngo");
 
 module.exports = {
   async store(req, res) {
@@ -12,11 +12,11 @@ module.exports = {
       status
     } = req.body;
 
-    if (await Ong.findOne({ email })) {
+    if (await Ngo.findOne({ email })) {
       return res.status(400).json({ error: 'Esta conta de usuário já existe!' });
     }
 
-    const ong = await Ong.create({ 
+    const ngo = await Ngo.create({ 
       name, 
       email, 
       whatsapp, 
@@ -25,13 +25,13 @@ module.exports = {
       password,
       status       
     });
-    return res.json(ong);
+    return res.json(ngo);
   },
 
   async show(req, res){
-    const {ongId} = req.params;
-    const ong = await Ong.findById(ongId);
-    return res.json(ong);
+    const {ngoId} = req.params;
+    const ngo = await Ngo.findById(ngoId);
+    return res.json(ngo);
   },
     
 
@@ -49,21 +49,21 @@ module.exports = {
     },*/
 
     async update(req, res) {      
-      const {ongId} = req.params;
+      const {ngoId} = req.params;
       const { name, email, whatsapp, adress } = req.body;
-      const ong = await Ong.findByIdAndUpdate(ongId, {        
+      const ngo = await Ngo.findByIdAndUpdate(ngoId, {        
         name, 
         email, 
         whatsapp, 
         adress 
         
       }, {new : true});
-      return res.json(ong)
+      return res.json(ngo)
     },
 
     async destroy(req, res){
-      const {ongId} = req.params;
-      await Ong.findOneAndDelete( ongId);
+      const {ngoId} = req.params;
+      await Ngo.findOneAndDelete( ngoId);
       return res.json({ sucess:'Conta de usuário deletada com sucesso.'});
     }
 }

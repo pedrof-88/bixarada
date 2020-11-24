@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
-const Apoiador = require('../models/Apoiador');
-const Ong = require('../models/Ong');
+const User = require('../models/User');
+const Ngo = require('../models/Ngo');
 
 
 
@@ -22,21 +22,21 @@ module.exports = {
 
 async store(req,res) { 
   const {email, password} = req.body;
-  const apoiador = await Apoiador.findOne({email}).select('+password')
-  if(!apoiador) {
-    const ong = await Ong.findOne({email}).select('+password')
-    if(!ong) {
+  const user = await User.findOne({email}).select('+password')
+  if(!user) {
+    const ngo = await Ngo.findOne({email}).select('+password')
+    if(!ngo) {
       return res.status(400).json({error: 'Usuário não encontrado.'});
     }
-    if(!await bcrypt.compare(password, ong.password)){
+    if(!await bcrypt.compare(password, ngo.password)){
       return res.status(400).json({error: 'Senha inválida'});
     }
-    return res.json(ong)
+    return res.json(ngo)
   }
-  if(!await bcrypt.compare(password, apoiador.password)){
+  if(!await bcrypt.compare(password, user.password)){
     return res.status(400).json({error: 'Senha inválida'});
   }
-  return res.json(apoiador)
+  return res.json(user)
 
 }
 }

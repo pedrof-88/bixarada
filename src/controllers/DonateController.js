@@ -1,4 +1,4 @@
-const Casos = require('../models/Casos');
+const Casos = require('../models/Incident');
 const Donate = require('../models/Donate');
 
 

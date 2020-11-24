@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const OngSchema = new mongoose.Schema({
+const NgoSchema = new mongoose.Schema({
   
   status:{
     type:Number,
@@ -35,15 +35,15 @@ const OngSchema = new mongoose.Schema({
     select:false}, 
 });
 
-OngSchema.pre('save', async function (next) {
+NgoSchema.pre('save', async function (next) {
   const hash = await bcrypt.hash(this.password, 10);
   this.password = hash;  
   next();
 });
-OngSchema.pre('save', async function (next) {
+NgoSchema.pre('save', async function (next) {
   const hashCnpj = await bcrypt.hash(this.cnpj, 10);
   this.cnpj = hashCnpj;  
   next();
 });
 
-module.exports = mongoose.model('Ong', OngSchema);
+module.exports = mongoose.model('Ngo', NgoSchema);
