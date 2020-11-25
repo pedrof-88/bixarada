@@ -4,7 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
 const routes = require('./routes');
-
+const engines = require('consolidate');
 
 
 const app = express();
@@ -20,6 +20,11 @@ mongoose.connect(Bixarada,
   useFindAndModify: false,
   useCreateIndex: true
 });
+
+//For render views
+app.engine("ejs", engines.ejs);
+app.set('views', path.join(__dirname, './views'));
+app.set("view engine", "ejs");
 
 app.use(cors());
 app.use(express.json());

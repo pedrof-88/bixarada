@@ -5,8 +5,9 @@ const uploadConfig = require('./config/multer');
 const UserController = require('./controllers/UserController');
 const NgoController = require('./controllers/NgoController');
 const AuthController = require('./controllers/AuthController');
-const CasoController = require('./controllers/CasoController');
+const IncidentController = require('./controllers/IncidentController');
 const DonateController = require('./controllers/DonateController');
+const CheckoutController = require('./controllers/CheckoutController');
 
 const routes = express.Router();
 const upload = multer(uploadConfig);
@@ -27,16 +28,27 @@ routes.put ('/ngos/:ngoId', NgoController.update);
 routes.delete ('/ngos/:ngoId', NgoController.destroy);
 
 //Casos
-routes.post ('/casos', upload.single('incidentImage'), CasoController.store);
-routes.get('/casos', CasoController.index);
-routes.get('/perfil',CasoController.list);
-routes.get('/casos/:incidentId', CasoController.show);
-routes.get('/perfil/:incidentId', CasoController.listDetail);
-routes.put('/casos/:incidentId', CasoController.update);
+routes.post ('/incidents', upload.single('incidentImage'), IncidentController.store);
+routes.get('/incidents', IncidentController.index);
+routes.get('/profile',IncidentController.list);
+routes.get('/incidents/:incidentId', IncidentController.show);
+routes.get('/profile/:incidentId', IncidentController.listDetail);
+routes.put('/incidents/:incidentId', IncidentController.update);
 //Doações
 routes.post ('/:userId/casos/:incidentId/donate', DonateController.store);
 routes.get('/donate', DonateController.index);
+//PAYDay
+routes.get('/checkout/:id/:email/:description/:amount', CheckoutController.checkout);
+routes.get('/success', (req, res) => {
+  return res.render('success_screen')
+});
+routes.get('/pending', (req, res) => {
+  return res.render('pending_screen')
+});
 
+routes.get('/failure', (req, res) => {
+  return res.render('failure_screen')
+});
 
 
 
