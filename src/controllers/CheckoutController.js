@@ -13,7 +13,7 @@ module.exports = {
 
      console.log(process.env)
       MercadoPago.configure({
-        sandbox: process.env.STORAGE_TYPE,
+        sandbox: process.env.SANDBOX,
         public_key: process.env.PUBLIC_KEY,
         access_token: process.env.ACESS_TOKEN,
       });
