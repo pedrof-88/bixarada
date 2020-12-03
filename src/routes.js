@@ -28,12 +28,12 @@ routes.put ('/ngos/:ngoId', NgoController.update);
 routes.delete ('/ngos/:ngoId', NgoController.destroy);
 
 //Casos
-routes.post ('/incidents', upload.single('incidentImage'), IncidentController.store);
+routes.post ('/incidents/:ngoId', upload.single('incidentImage'), IncidentController.store);
 routes.get('/incidents', IncidentController.index);
 routes.get('/profile',IncidentController.list);
 routes.get('/incidents/:incidentId', IncidentController.show);
 routes.get('/profile/:incidentId', IncidentController.listDetail);
-routes.put('/incidents/:incidentId', IncidentController.update);
+routes.put('/incidents/:incidentId', upload.single('incidentImage'), IncidentController.update);
 //Doações
 routes.post ('/:userId/casos/:incidentId/donate', DonateController.store);
 routes.get('/donate', DonateController.index);

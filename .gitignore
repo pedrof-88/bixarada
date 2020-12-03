@@ -1,5 +1,4 @@
-/node_modules 
-
-/package-lock.json
-tmp/uplodas*
+node_modules
+.env
+tmp/uploads/*
 !tmp/uploads/.gitkeep

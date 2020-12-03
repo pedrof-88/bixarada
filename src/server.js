@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -9,11 +11,11 @@ const engines = require('consolidate');
 
 const app = express();
 
-global.IP_ADDRESS = 'http://192.168.10.6:3333';
+global.IP_ADDRESS = process.env.IP_ADDRESS;
 
-const Bixarada = 'mongodb+srv://cfpets:cfpetspi2020@cluster0.ybjoz.mongodb.net/dbpet?retryWrites=true&w=majority';
 
-mongoose.connect(Bixarada, 
+mongoose.connect(
+  process.env.MONGO_URL, 
 {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -33,4 +35,4 @@ app.use(morgan('dev'));
 app.use('/images', express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')));
 app.use(routes);
 
-app.listen(3333);
+app.listen(process.env.PORT || 3333);

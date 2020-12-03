@@ -15,7 +15,7 @@ module.exports = {
       total,
       start,
       end,      
-      ong: req.headers.authorization,
+      ngo: req.params.ngoId,
     });
     return res.json(incident);
   },
@@ -41,10 +41,17 @@ module.exports = {
     await incident.populate(['ong' , 'incident']).execPopulate();
     return res.json(incident);
   },
-  async update(req, res) {         
-      const incident = await Casos.findOneAndUpdate({incidentId: res.incidentId}, {        
-      $inc: {total: -1000 }
-      
+    async update(req, res) {
+    const {filename} = req.file;
+    const { incidentId } = req.params;
+    const { title, description, goal, start, end} = req.body;
+    const incident = await Incidents.findByIdAndUpdate(incidentId, {    
+      incidentImage: filename,
+      title, 
+      description,
+      goal,
+      start,
+      end,      
     }, {new : true});
     return res.json(incident)
   },

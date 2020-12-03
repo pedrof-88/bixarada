@@ -1,4 +1,4 @@
-const Casos = require('../models/Incident');
+const Incident = require('../models/Incident');
 const Donate = require('../models/Donate');
 
 
@@ -13,7 +13,7 @@ module.exports = {
       user: req.params.userId
     });
     if (value > 0) {
-      await Casos.findOneAndUpdate({incidentId: res.incidentId}, {        
+      await Incident.findByIdAndUpdate(req.params.incidentId, {        
         $inc: {total: value }
         
     }, {new : true});

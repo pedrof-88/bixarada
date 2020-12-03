@@ -1,3 +1,5 @@
+require("dotenv").config
+
 const MercadoPago = require('mercadopago');
 
 const getFullUrl = (req) =>{
@@ -9,11 +11,11 @@ const getFullUrl = (req) =>{
 module.exports = {
   async checkout(req, res){
 
-     // console.log(process.env)
+     console.log(process.env)
       MercadoPago.configure({
-        sandbox: true,
-        public_key: 'TEST-bb7e5e78-e2d0-4be5-9471-0b175fbe0f6f',
-        access_token: 'TEST-1120754379159940-112415-3ec615c84d9fcd6e7d08ef5e393edb57-156284924'
+        sandbox: process.env.STORAGE_TYPE,
+        public_key: process.env.PUBLIC_KEY,
+        access_token: process.env.ACESS_TOKEN,
       });
 
       const { id, email, description, amount } = req.params;
